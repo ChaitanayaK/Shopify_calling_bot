@@ -1,7 +1,3 @@
 .env
-app2.py
-orders.json
-something.txt
-shopify_call_bot
+dump
 __pycache__
-app2.py

@@ -13,9 +13,7 @@ class Extractor:
         self.shopify_store = "vkaps-amit.myshopify.com"
         self.api_version = "2022-10"
         self.access_token = os.environ.get("ACCESS_TOKEN")
-
         self.phone_number = phone_number
-        # self.order_number = order_number
         self.conn = http.client.HTTPSConnection(self.shopify_store)
         self.headers = {
             'Content-Type': 'application/json',
@@ -33,8 +31,6 @@ class Extractor:
         # print(json_data)
 
         customer_id = json_data["customers"][0]["id"]
-        customer_name = json_data["customers"][0]["first_name"]
-        # print(customer_name)
         # print(customer_id)
 
         payload = ''
@@ -43,11 +39,18 @@ class Extractor:
         data = res.read()
         decoded_data = data.decode("utf-8")
         json_data = json.loads(decoded_data)
+
         # print(json_data)
 
-        return [customer_name, json_data]
+        for element in json_data['orders']:
+            # print(element['order_number'])
+            if str(element['order_number']) == str(self.order_number):
+                order_details = json.dumps(element)
+                # print(order_detail
+        return 
+        return None
 
 
 if __name__ == "__main__":
-    extractor = Extractor("+916263467839")
+    extractor = Extractor("+917000321403", 1162)
     print(extractor.extractData())

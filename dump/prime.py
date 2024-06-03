@@ -9,8 +9,6 @@ from firebase_admin import credentials, storage
 from dump.parse_info import Parser
 from data_extractor import Extractor
 from assistant_model import Assistant
-from openai import OpenAI
-from datetime import datetime, timedelta
 
 cred = credentials.Certificate("cred.json")
 firebase_admin.initialize_app(cred, {
@@ -18,11 +16,6 @@ firebase_admin.initialize_app(cred, {
 })
 
 bucket = storage.bucket()
-
-audio_file = "output.mp3"
-
-client = OpenAI()
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('TWILIO_ACCOUNT_SID')
@@ -37,8 +30,6 @@ def voice():
 
     caller_number = request.form['From']
     print(f"Incoming call from: {caller_number}")
-
-    session['caller_number'] = caller_number
 
     extractor = Extractor(caller_number)
     data = extractor.extractData()
@@ -56,8 +47,27 @@ def voice():
     thread_id = Assistant.createThreadId()
     session['thread_id'] = thread_id
 
-    response.redirect(url_for('botSpeak', prompt=f"Hi, I am {client_name}.", _external=True))
+    response.redirect(url_for('convertAudio', prompt=f"Hi, I am {client_name}.", _external=True))
 
+    return str(response)
+
+@app.route("/convertAudio", methods=['POST', 'GET'])
+def convertAudio():
+    response = VoiceResponse()
+
+    assistant_id = session.get('assistant_id')
+    thread_id = session.get('thread_id')
+
+    prompt = request.args.get('prompt')
+
+    assistant_reply = Assistant.ask(assistant_id, thread_id, prompt)
+
+    gather = Gather(input='speech', action="/handle_speech", method='POST')
+    gather.say(assistant_reply)
+
+    # TODO: voices = [Ruth]
+
+    response.append(gather)
     return str(response)
 
 @app.route("/botSpeak", methods=['POST', 'GET'])
@@ -66,47 +76,27 @@ def botSpeak():
 
     assistant_id = session.get('assistant_id')
     thread_id = session.get('thread_id')
-    caller_number = session.get('caller_number')
+
     prompt = request.args.get('prompt')
 
     assistant_reply = Assistant.ask(assistant_id, thread_id, prompt)
 
-    audio_reply = client.audio.speech.create(
-        model="tts-1",
-        voice="nova",
-        input=assistant_reply,
-    )
-    audio_reply.stream_to_file(audio_file)
-
-    blob_name = f"customer{caller_number}.mp3"
-    blob = bucket.blob(blob_name)
-    blob.upload_from_filename(audio_file)
-    # blob.make_public()
-    if os.path.exists(audio_file):
-        os.remove(audio_file)
-
     gather = Gather(input='speech', action="/handle_speech", method='POST')
-    # url = blob.public_url
-    expiration_time = datetime.utcnow() + timedelta(seconds=30)
-    signed_url = blob.generate_signed_url(expiration_time)
+    gather.say(assistant_reply)
 
-    print(f'\n\n{blob.public_url}\n\n')
-    gather.play(signed_url)
+    # TODO: voices = [Ruth]
+
     response.append(gather)
-
     return str(response)
 
 @app.route("/handle_speech", methods=['POST', 'GET'])
 def handle_speech():
     response = VoiceResponse()
-    caller_number = session.get('caller_number')
+
     if request.method == 'POST':
         speech_result = request.form.get('SpeechResult', '').strip()
     else:
         speech_result = request.args.get('SpeechResult', '').strip()
-
-    blob = bucket.blob(f'customer{caller_number}.mp3')
-    blob.delete()
 
     print(f"Method: {request.method}")
     print(f"Speech Result: {speech_result}")
