@@ -1,28 +1,14 @@
 # ngrok http --domain=kid-one-spaniel.ngrok-free.app 5000 
 
-from flask import Flask, request, jsonify, url_for, session
+from flask import Flask, request, jsonify, url_for, session, send_from_directory
 from twilio.twiml.voice_response import VoiceResponse, Gather
 import json
 import os
-import firebase_admin
-from firebase_admin import credentials, storage
-from dump.parse_info import Parser
+from openai import OpenAI
 from data_extractor import Extractor
 from assistant_model import Assistant
-from openai import OpenAI
-from datetime import datetime, timedelta
-
-cred = credentials.Certificate("cred.json")
-firebase_admin.initialize_app(cred, {
-    'storageBucket': 'shopifycallbot.appspot.com'
-})
-
-bucket = storage.bucket()
-
-audio_file = "output.mp3"
 
 client = OpenAI()
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('TWILIO_ACCOUNT_SID')
@@ -76,22 +62,11 @@ def botSpeak():
         voice="nova",
         input=assistant_reply,
     )
-    audio_reply.stream_to_file(audio_file)
-
-    blob_name = f"customer{caller_number}.mp3"
-    blob = bucket.blob(blob_name)
-    blob.upload_from_filename(audio_file)
-    # blob.make_public()
-    if os.path.exists(audio_file):
-        os.remove(audio_file)
+    audio_reply.stream_to_file(f'customer{caller_number}.mp3')
 
     gather = Gather(input='speech', action="/handle_speech", method='POST')
-    # url = blob.public_url
-    expiration_time = datetime.utcnow() + timedelta(seconds=30)
-    signed_url = blob.generate_signed_url(expiration_time)
 
-    print(f'\n\n{blob.public_url}\n\n')
-    gather.play(signed_url)
+    gather.play(f'https://kid-one-spaniel.ngrok-free.app/audio/customer{caller_number}.mp3')
     response.append(gather)
 
     return str(response)
@@ -105,9 +80,6 @@ def handle_speech():
     else:
         speech_result = request.args.get('SpeechResult', '').strip()
 
-    blob = bucket.blob(f'customer{caller_number}.mp3')
-    blob.delete()
-
     print(f"Method: {request.method}")
     print(f"Speech Result: {speech_result}")
 
@@ -118,6 +90,10 @@ def handle_speech():
 
     response.hangup()
     return str(response)
+
+@app.route('/audio/<filename>')
+def serve_static(filename):
+    return send_from_directory(directory='', path=filename)
 
 if __name__ == "__main__":
     app.run(debug=True)

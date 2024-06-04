@@ -1,6 +1,5 @@
 import http.client
 import json
-# import openai
 from dotenv import load_dotenv, find_dotenv
 import os
 from langchain_openai import ChatOpenAI
