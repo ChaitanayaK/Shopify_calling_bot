@@ -9,7 +9,7 @@ p_ = load_dotenv(find_dotenv())
 
 class Extractor:
     def __init__(self, phone_number):
-        self.shopify_store = "vkaps-amit.myshopify.com"
+        self.shopify_store = "melodybeanie.myshopify.com"
         self.api_version = "2022-10"
         self.access_token = os.environ.get("ACCESS_TOKEN")
 

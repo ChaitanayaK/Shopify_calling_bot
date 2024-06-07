@@ -4,11 +4,15 @@ from flask import Flask, request, jsonify, url_for, session, send_from_directory
 from twilio.twiml.voice_response import VoiceResponse, Gather
 import json
 import os
+# import threading
 from openai import OpenAI
 from data_extractor import Extractor
 from assistant_model import Assistant
 
 client = OpenAI()
+
+# def waitSong(response):
+#     response.play(f'https://kid-one-spaniel.ngrok-free.app/audio/call_wait.mp3')
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('TWILIO_ACCOUNT_SID')
@@ -25,6 +29,8 @@ def voice():
     print(f"Incoming call from: {caller_number}")
 
     session['caller_number'] = caller_number
+    # thread = threading.Thread(target=waitSong, args=(response))
+    # thread.start()
 
     extractor = Extractor(caller_number)
     data = extractor.extractData()
@@ -42,8 +48,8 @@ def voice():
     thread_id = Assistant.createThreadId()
     session['thread_id'] = thread_id
 
-    response.redirect(url_for('botSpeak', prompt=f"Hi, I am {client_name}.", _external=True))
 
+    response.redirect(url_for('botSpeak', prompt=f"Hi, I am {client_name}."))
     return str(response)
 
 @app.route("/botSpeak", methods=['POST', 'GET'])
@@ -60,11 +66,11 @@ def botSpeak():
     audio_reply = client.audio.speech.create(
         model="tts-1",
         voice="nova",
-        input=assistant_reply,
+        input=assistant_reply
     )
     audio_reply.stream_to_file(f'customer{caller_number}.mp3')
 
-    gather = Gather(input='speech', action="/handle_speech", method='POST')
+    gather = Gather(input='speech', action="/handle_speech", method='POST', enhanced="true", speechModel="phone_call", speechTimeout='5', timeout='5')
 
     gather.play(f'https://kid-one-spaniel.ngrok-free.app/audio/customer{caller_number}.mp3')
     response.append(gather)
@@ -84,7 +90,7 @@ def handle_speech():
     print(f"Speech Result: {speech_result}")
 
     if speech_result:
-        response.redirect(url_for('botSpeak', prompt=speech_result, _external=True))
+        response.redirect(url_for('botSpeak', prompt=speech_result))
     else:
         response.say("I didn't catch that. Please try again.")
 
