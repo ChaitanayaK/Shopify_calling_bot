@@ -47,7 +47,7 @@ class Extractor:
 
             return [customer_name, json_data]
         except:
-            print(json_data['customers'])
+            print(json_data)
 
 
 if __name__ == "__main__":
