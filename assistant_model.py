@@ -41,8 +41,8 @@ class Assistant:
                     }
                 }
             )
-        # if os.path.exists(f'customer{phone_number}.json'):
-        #     os.remove(f'customer{phone_number}.json')
+        if os.path.exists(f'customer{phone_number}.json'):
+            os.remove(f'customer{phone_number}.json')
         return assistant
     
     @staticmethod

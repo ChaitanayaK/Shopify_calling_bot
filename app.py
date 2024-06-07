@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify, url_for, session, send_from_directory
 from twilio.twiml.voice_response import VoiceResponse, Gather
 import json
 import os
+from datetime import datetime
 # import threading
 from openai import OpenAI
 from data_extractor import Extractor
@@ -68,6 +69,7 @@ def botSpeak():
     gather = Gather(input='speech', action="/handle_speech", method='POST', enhanced="true", speechModel="phone_call", speechTimeout='5', timeout='5')
 
     gather.play(f'http://66.179.252.25/audio/customer{caller_number}.mp3')
+    # gather.play(f'https://kid-one-spaniel.ngrok-free.app/audio/customer{caller_number}.mp3')
     response.append(gather)
 
     return str(response)
@@ -76,6 +78,10 @@ def botSpeak():
 def handle_speech():
     response = VoiceResponse()
     caller_number = session.get('caller_number')
+
+    if os.path.exists(f'customer{caller_number}.mp3'):
+        os.remove(f'customer{caller_number}.mp3')
+
     if request.method == 'POST':
         speech_result = request.form.get('SpeechResult', '').strip()
     else:
