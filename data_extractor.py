@@ -27,6 +27,8 @@ class Extractor:
         res = self.conn.getresponse()
         data = res.read()
 
+        print(data)
+
         decoded_data = data.decode("utf-8")
         json_data = json.loads(decoded_data)
         # print(json_data)
