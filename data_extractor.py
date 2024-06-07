@@ -31,20 +31,23 @@ class Extractor:
         json_data = json.loads(decoded_data)
         # print(json_data)
 
-        customer_id = json_data["customers"][0]["id"]
-        customer_name = json_data["customers"][0]["first_name"]
-        # print(customer_name)
-        # print(customer_id)
+        try:
+            customer_id = json_data["customers"][0]["id"]
+            customer_name = json_data["customers"][0]["first_name"]
+            # print(customer_name)
+            # print(customer_id)
 
-        payload = ''
-        self.conn.request("GET", f"/admin/api/2024-04/orders.json?status=any&customer_id={customer_id}", payload, self.headers)
-        res = self.conn.getresponse()
-        data = res.read()
-        decoded_data = data.decode("utf-8")
-        json_data = json.loads(decoded_data)
-        # print(json_data)
+            payload = ''
+            self.conn.request("GET", f"/admin/api/2024-04/orders.json?status=any&customer_id={customer_id}", payload, self.headers)
+            res = self.conn.getresponse()
+            data = res.read()
+            decoded_data = data.decode("utf-8")
+            json_data = json.loads(decoded_data)
+            # print(json_data)
 
-        return [customer_name, json_data]
+            return [customer_name, json_data]
+        except:
+            print(json_data['customers'])
 
 
 if __name__ == "__main__":
