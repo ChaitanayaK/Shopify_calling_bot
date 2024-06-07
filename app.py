@@ -11,9 +11,6 @@ from assistant_model import Assistant
 
 client = OpenAI()
 
-# def waitSong(response):
-#     response.play(f'https://kid-one-spaniel.ngrok-free.app/audio/call_wait.mp3')
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('TWILIO_ACCOUNT_SID')
 
@@ -29,8 +26,6 @@ def voice():
     print(f"Incoming call from: {caller_number}")
 
     session['caller_number'] = caller_number
-    # thread = threading.Thread(target=waitSong, args=(response))
-    # thread.start()
 
     extractor = Extractor(caller_number)
     data = extractor.extractData()
@@ -72,7 +67,7 @@ def botSpeak():
 
     gather = Gather(input='speech', action="/handle_speech", method='POST', enhanced="true", speechModel="phone_call", speechTimeout='5', timeout='5')
 
-    gather.play(f'https://kid-one-spaniel.ngrok-free.app/audio/customer{caller_number}.mp3')
+    gather.play(f'http://66.179.252.25/audio/customer{caller_number}.mp3')
     response.append(gather)
 
     return str(response)
