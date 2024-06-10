@@ -4,8 +4,6 @@ from flask import Flask, request, jsonify, url_for, session, send_from_directory
 from twilio.twiml.voice_response import VoiceResponse, Gather
 import json
 import os
-from datetime import datetime
-# import threading
 from openai import OpenAI
 from data_extractor import Extractor
 from assistant_model import Assistant
@@ -25,6 +23,9 @@ def voice():
 
     caller_number = request.form['From']
     print(f"Incoming call from: {caller_number}")
+
+    if os.path.exists(f'customer{caller_number}.mp3'):
+        os.remove(f'customer{caller_number}.mp3')
 
     session['caller_number'] = caller_number
 
