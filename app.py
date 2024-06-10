@@ -24,6 +24,8 @@ def voice():
     caller_number = request.form['From']
     print(f"Incoming call from: {caller_number}")
 
+    if os.path.exists(f'assets/calldata/customer{caller_number}.json'):
+            os.remove(f'assets/calldata/customer{caller_number}.json')
     if os.path.exists(f'assets/callvoice/customer{caller_number}.mp3'):
         os.remove(f'assets/callvoice/customer{caller_number}.mp3')
 
