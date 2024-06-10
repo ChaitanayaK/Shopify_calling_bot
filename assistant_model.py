@@ -10,7 +10,7 @@ class Assistant:
     @staticmethod
     def create(phone_number):
         file = client.files.create(
-            file=open(f"customer{phone_number}.json", "rb"),
+            file=open(f"assets/calldata/customer{phone_number}.json", "rb"),
             purpose='assistants'
         )
         assistant = client.beta.assistants.create(
@@ -41,8 +41,8 @@ class Assistant:
                     }
                 }
             )
-        if os.path.exists(f'customer{phone_number}.json'):
-            os.remove(f'customer{phone_number}.json')
+        if os.path.exists(f'assets/calldata/customer{phone_number}.json'):
+            os.remove(f'assets/calldata/customer{phone_number}.json')
         return assistant
     
     @staticmethod

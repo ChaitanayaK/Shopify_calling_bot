@@ -24,8 +24,8 @@ def voice():
     caller_number = request.form['From']
     print(f"Incoming call from: {caller_number}")
 
-    if os.path.exists(f'customer{caller_number}.mp3'):
-        os.remove(f'customer{caller_number}.mp3')
+    if os.path.exists(f'assets/callvoice/customer{caller_number}.mp3'):
+        os.remove(f'assets/callvoice/customer{caller_number}.mp3')
 
     session['caller_number'] = caller_number
 
@@ -34,7 +34,7 @@ def voice():
     order_data = data[1]
     client_name = data[0]
 
-    with open(f'customer{caller_number}.json', 'w') as json_file:
+    with open(f'assets/calldata/customer{caller_number}.json', 'w') as json_file:
         json.dump(order_data, json_file, indent=4) 
 
     # TODO: code to fetch all order data using phone number(wait for results)
@@ -65,7 +65,7 @@ def botSpeak():
         voice="nova",
         input=assistant_reply
     )
-    audio_reply.stream_to_file(f'customer{caller_number}.mp3')
+    audio_reply.stream_to_file(f'assets/callvoice/customer{caller_number}.mp3')
 
     gather = Gather(input='speech', action="/handle_speech", method='POST', enhanced="true", speechModel="phone_call", speechTimeout='5', timeout='5')
 
@@ -80,8 +80,8 @@ def handle_speech():
     response = VoiceResponse()
     caller_number = session.get('caller_number')
 
-    if os.path.exists(f'customer{caller_number}.mp3'):
-        os.remove(f'customer{caller_number}.mp3')
+    if os.path.exists(f'assets/callvoice/customer{caller_number}.mp3'):
+        os.remove(f'assets/callvoice/customer{caller_number}.mp3')
 
     if request.method == 'POST':
         speech_result = request.form.get('SpeechResult', '').strip()
@@ -101,7 +101,7 @@ def handle_speech():
 
 @app.route('/audio/<filename>')
 def serve_static(filename):
-    return send_from_directory(directory='', path=filename)
+    return send_from_directory(directory='assets/callvoice/', path=filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
