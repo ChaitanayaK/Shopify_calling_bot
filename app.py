@@ -88,8 +88,8 @@ def botSpeak():
 
     gather = Gather(input='speech', action="/handle_speech", method='POST', enhanced="true", speechModel="phone_call", speechTimeout='5', timeout='5')
 
-    # gather.play(f'http://66.179.252.25/audio/customer{caller_number}.mp3')
-    gather.play(f'https://kid-one-spaniel.ngrok-free.app/audio/customer{caller_number}.mp3')
+    gather.play(f'http://66.179.252.25/audio/customer{caller_number}.mp3')
+    # gather.play(f'https://kid-one-spaniel.ngrok-free.app/audio/customer{caller_number}.mp3')
     response.append(gather)
 
     return str(response)
