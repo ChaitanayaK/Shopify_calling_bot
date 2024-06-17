@@ -8,7 +8,6 @@ from groq import Groq
 from openai import OpenAI
 import requests
 from data_extractor import Extractor
-import time
 
 url = "https://api.deepgram.com/v1/speak?model=aura-asteria-en"
 headers = {
