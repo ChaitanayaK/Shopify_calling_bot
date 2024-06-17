@@ -1,0 +1,411 @@
+{
+    "orders": [
+        {
+            "id": 5588226867281,
+            "admin_graphql_api_id": "gid://shopify/Order/5588226867281",
+            "app_id": 1354745,
+            "browser_ip": "61.246.139.249",
+            "buyer_accepts_marketing": true,
+            "cancel_reason": null,
+            "cancelled_at": null,
+            "cart_token": null,
+            "checkout_id": 24103019511889,
+            "checkout_token": "9d39e96ba038a4bb373b650eec39771e",
+            "client_details": {
+                "accept_language": null,
+                "browser_height": null,
+                "browser_ip": "61.246.139.249",
+                "browser_width": null,
+                "session_hash": null,
+                "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+            },
+            "closed_at": null,
+            "confirmation_number": "ACPTE0FC0",
+            "confirmed": true,
+            "contact_email": "amit.dagor@vkaps.com",
+            "created_at": "2024-06-07T11:03:18+02:00",
+            "currency": "EUR",
+            "current_subtotal_price": "120.00",
+            "current_subtotal_price_set": {
+                "shop_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "current_total_additional_fees_set": null,
+            "current_total_discounts": "0.00",
+            "current_total_discounts_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "current_total_duties_set": null,
+            "current_total_price": "120.00",
+            "current_total_price_set": {
+                "shop_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "current_total_tax": "0.00",
+            "current_total_tax_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "customer_locale": "en",
+            "device_id": null,
+            "discount_codes": [],
+            "email": "amit.dagor@vkaps.com",
+            "estimated_taxes": false,
+            "financial_status": "pending",
+            "fulfillment_status": "fulfilled",
+            "landing_site": null,
+            "landing_site_ref": null,
+            "location_id": null,
+            "merchant_of_record_app_id": null,
+            "name": "#1010",
+            "note": null,
+            "note_attributes": [],
+            "number": 10,
+            "order_number": 1010,
+            "order_status_url": "https://melodybeanie.com/8962539601/orders/da6c867047bfc47784124f9f9d2e81c8/authenticate?key=223f4e3068cfd75dc6bc06b9b8ff88db&none=VQZSAl9CUVBaQV1G",
+            "original_total_additional_fees_set": null,
+            "original_total_duties_set": null,
+            "payment_gateway_names": [],
+            "phone": "+916263467839",
+            "po_number": null,
+            "presentment_currency": "EUR",
+            "processed_at": "2024-06-07T11:03:18+02:00",
+            "reference": "359303901494d26aef093adbbe7640d0",
+            "referring_site": null,
+            "source_identifier": "359303901494d26aef093adbbe7640d0",
+            "source_name": "shopify_draft_order",
+            "source_url": null,
+            "subtotal_price": "120.00",
+            "subtotal_price_set": {
+                "shop_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "tags": "",
+            "tax_exempt": false,
+            "tax_lines": [],
+            "taxes_included": true,
+            "test": false,
+            "token": "da6c867047bfc47784124f9f9d2e81c8",
+            "total_discounts": "0.00",
+            "total_discounts_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_line_items_price": "120.00",
+            "total_line_items_price_set": {
+                "shop_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_outstanding": "120.00",
+            "total_price": "120.00",
+            "total_price_set": {
+                "shop_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "120.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_shipping_price_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_tax": "0.00",
+            "total_tax_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_tip_received": "0.00",
+            "total_weight": 200,
+            "updated_at": "2024-06-07T13:37:40+02:00",
+            "user_id": 80230514769,
+            "billing_address": {
+                "first_name": "Chaitanay",
+                "address1": "",
+                "phone": null,
+                "city": "",
+                "zip": null,
+                "province": null,
+                "country": "India",
+                "last_name": "Chaitanay",
+                "address2": null,
+                "company": null,
+                "latitude": null,
+                "longitude": null,
+                "name": "Chaitanay Chaitanay",
+                "country_code": "IN",
+                "province_code": null
+            },
+            "customer": {
+                "id": 6790190465105,
+                "email": "amit.dagor@vkaps.com",
+                "created_at": "2024-06-07T11:02:24+02:00",
+                "updated_at": "2024-06-07T11:03:18+02:00",
+                "first_name": "Chaitanay",
+                "last_name": "Chaitanay",
+                "state": "disabled",
+                "note": "",
+                "verified_email": true,
+                "multipass_identifier": null,
+                "tax_exempt": false,
+                "phone": "+916263467839",
+                "email_marketing_consent": {
+                    "state": "subscribed",
+                    "opt_in_level": "single_opt_in",
+                    "consent_updated_at": "2024-06-07T11:02:24+02:00"
+                },
+                "sms_marketing_consent": {
+                    "state": "subscribed",
+                    "opt_in_level": "single_opt_in",
+                    "consent_updated_at": "2024-06-07T11:02:24+02:00",
+                    "consent_collected_from": "SHOPIFY"
+                },
+                "tags": "",
+                "currency": "EUR",
+                "tax_exemptions": [],
+                "admin_graphql_api_id": "gid://shopify/Customer/6790190465105",
+                "default_address": {
+                    "id": 8175274000465,
+                    "customer_id": 6790190465105,
+                    "first_name": "Chaitanay",
+                    "last_name": "Chaitanay",
+                    "company": "",
+                    "address1": "",
+                    "address2": "",
+                    "city": "",
+                    "province": "",
+                    "country": "India",
+                    "zip": "",
+                    "phone": "",
+                    "name": "Chaitanay Chaitanay",
+                    "province_code": null,
+                    "country_code": "IN",
+                    "country_name": "India",
+                    "default": true
+                }
+            },
+            "discount_applications": [],
+            "fulfillments": [
+                {
+                    "id": 4688116875345,
+                    "admin_graphql_api_id": "gid://shopify/Fulfillment/4688116875345",
+                    "created_at": "2024-06-07T13:37:40+02:00",
+                    "location_id": 21410578513,
+                    "name": "#1010.1",
+                    "order_id": 5588226867281,
+                    "origin_address": {},
+                    "receipt": {},
+                    "service": "manual",
+                    "shipment_status": null,
+                    "status": "success",
+                    "tracking_company": "Other",
+                    "tracking_number": "454545",
+                    "tracking_numbers": [
+                        "454545"
+                    ],
+                    "tracking_url": "http://dtdc.com/454545",
+                    "tracking_urls": [
+                        "http://dtdc.com/454545"
+                    ],
+                    "updated_at": "2024-06-07T13:37:40+02:00",
+                    "line_items": [
+                        {
+                            "id": 12665248940113,
+                            "admin_graphql_api_id": "gid://shopify/LineItem/12665248940113",
+                            "current_quantity": 1,
+                            "fulfillable_quantity": 0,
+                            "fulfillment_service": "manual",
+                            "fulfillment_status": "fulfilled",
+                            "gift_card": false,
+                            "grams": 200,
+                            "name": "MELODY BEANIE - RED",
+                            "price": "120.00",
+                            "price_set": {
+                                "shop_money": {
+                                    "amount": "120.00",
+                                    "currency_code": "EUR"
+                                },
+                                "presentment_money": {
+                                    "amount": "120.00",
+                                    "currency_code": "EUR"
+                                }
+                            },
+                            "product_exists": true,
+                            "product_id": 2867984990289,
+                            "properties": [],
+                            "quantity": 1,
+                            "requires_shipping": true,
+                            "sku": "",
+                            "taxable": true,
+                            "title": "MELODY BEANIE",
+                            "total_discount": "0.00",
+                            "total_discount_set": {
+                                "shop_money": {
+                                    "amount": "0.00",
+                                    "currency_code": "EUR"
+                                },
+                                "presentment_money": {
+                                    "amount": "0.00",
+                                    "currency_code": "EUR"
+                                }
+                            },
+                            "variant_id": 22714623819857,
+                            "variant_inventory_management": "shopify",
+                            "variant_title": "RED",
+                            "vendor": "MelodyBeanie",
+                            "tax_lines": [],
+                            "duties": [],
+                            "discount_allocations": []
+                        }
+                    ]
+                }
+            ],
+            "line_items": [
+                {
+                    "id": 12665248940113,
+                    "admin_graphql_api_id": "gid://shopify/LineItem/12665248940113",
+                    "current_quantity": 1,
+                    "fulfillable_quantity": 0,
+                    "fulfillment_service": "manual",
+                    "fulfillment_status": "fulfilled",
+                    "gift_card": false,
+                    "grams": 200,
+                    "name": "MELODY BEANIE - RED",
+                    "price": "120.00",
+                    "price_set": {
+                        "shop_money": {
+                            "amount": "120.00",
+                            "currency_code": "EUR"
+                        },
+                        "presentment_money": {
+                            "amount": "120.00",
+                            "currency_code": "EUR"
+                        }
+                    },
+                    "product_exists": true,
+                    "product_id": 2867984990289,
+                    "properties": [],
+                    "quantity": 1,
+                    "requires_shipping": true,
+                    "sku": "",
+                    "taxable": true,
+                    "title": "MELODY BEANIE",
+                    "total_discount": "0.00",
+                    "total_discount_set": {
+                        "shop_money": {
+                            "amount": "0.00",
+                            "currency_code": "EUR"
+                        },
+                        "presentment_money": {
+                            "amount": "0.00",
+                            "currency_code": "EUR"
+                        }
+                    },
+                    "variant_id": 22714623819857,
+                    "variant_inventory_management": "shopify",
+                    "variant_title": "RED",
+                    "vendor": "MelodyBeanie",
+                    "tax_lines": [],
+                    "duties": [],
+                    "discount_allocations": []
+                }
+            ],
+            "payment_terms": {
+                "id": 9457598545,
+                "created_at": "2024-06-07T11:03:18+02:00",
+                "due_in_days": null,
+                "payment_schedules": [
+                    {
+                        "id": 10760618065,
+                        "amount": "120.00",
+                        "currency": "EUR",
+                        "issued_at": null,
+                        "due_at": null,
+                        "completed_at": null,
+                        "created_at": "2024-06-07T11:03:18+02:00",
+                        "updated_at": "2024-06-07T11:03:18+02:00"
+                    }
+                ],
+                "payment_terms_name": "Due on receipt",
+                "payment_terms_type": "receipt",
+                "updated_at": "2024-06-07T11:03:18+02:00"
+            },
+            "refunds": [],
+            "shipping_address": {
+                "first_name": "Chaitanay",
+                "address1": "",
+                "phone": null,
+                "city": "",
+                "zip": null,
+                "province": null,
+                "country": "India",
+                "last_name": "Chaitanay",
+                "address2": null,
+                "company": null,
+                "latitude": null,
+                "longitude": null,
+                "name": "Chaitanay Chaitanay",
+                "country_code": "IN",
+                "province_code": null
+            },
+            "shipping_lines": []
+        }
+    ]
+}
